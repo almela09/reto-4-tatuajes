@@ -1,6 +1,6 @@
 import express, { Application } from "express"; // desde que librería? express.
 import dotenv from "dotenv";
-import { createRole, getRoles } from "../controllers/roleController";
+import { createRole, getRoles, updateRole } from "../controllers/roleController";
 
 dotenv.config();
 
@@ -18,6 +18,7 @@ app.get("/healthy", (req, res) => {
 //Roles routes
 app.get('/roles', getRoles); //lo modificamos en roleControllers.
 app.post('/roles', createRole);
+app.put('/roles',updateRole);
 
 //la app tiene que escuchar---- RUTAS. Por ejemplo si no la tienes que mandas? un 404 o no existe.
 //Estructura básica para el servidor
