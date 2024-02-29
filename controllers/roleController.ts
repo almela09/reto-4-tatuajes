@@ -8,3 +8,12 @@ export const getRoles = (req: Request, res: Response) => {
     message: "Roles retrieved succesfully",
   });
 };
+
+//el 201 es un created
+export const createRole = (req: Request, res: Response) =>{
+    res.status(201).json({
+        success: true,
+        message: "Roles created",
+      });
+
+}
