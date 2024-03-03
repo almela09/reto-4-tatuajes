@@ -18,7 +18,13 @@ export const createRole = (req: Request, res: Response) =>{
 
 }
 
-export const updateRole = (req: Request, res: Response) =>{
+export const updateRole = (req: Request, res: Response) =>{     
+
+    // recuperar parametros de la ruta // thunderclient lo que pongas en la barra es dinámico.
+    req.params.id;
+    console.log(req.params.id);
+    
+
     res.status(200).json({
         success: true,
         message: "Roles updated"
@@ -26,6 +32,10 @@ export const updateRole = (req: Request, res: Response) =>{
 }
 
 export const deleteRole = (req: Request, res: Response) =>{
+    req.params.id;
+    console.log(req.params.id);
+    
+
     res.status(200).json({
         success: true,
         message: "Roles delete"
