@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Role } from "./Role";
 
 @Entity("users")
 export class User {
@@ -13,7 +14,12 @@ export class User {
 
   @Column({ name: "createdAt" })
   createdAt!: Timestamp;
-  
+
   @Column({ name: "updatedAt" })
   updatedAt!: Timestamp;
+  @ManyToOne(() => Role, (role) => role.users)
+  @JoinColumn ({ name: "role_id" }) // campo personalizado en la bd
+  role!: Role;
+
+
 }

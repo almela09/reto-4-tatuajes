@@ -20,29 +20,28 @@ app.get("/api/healthy", (req, res) => {
   });
 });
 
-//Roles routes
+//Roles routes -endpoint.
 app.get("/api/roles", getRoles); //lo modificamos en roleControllers.
 app.post("/api/roles", createRole);
-app.put("/api/roles", updateRole); //cambiar informacion de todas las columnas /// PARAMETRO DE RUTA :id, significa que este dato es dinámico.
-app.delete("/api/roles", deleteRole);
+app.put("/api/roles/:id", updateRole); //cambiar informacion de todas las columnas /// PARAMETRO DE RUTA :id, significa que este dato es dinámico.
+app.delete("/api/roles/:id", deleteRole);
 
 // User routes
 
 //la app tiene que escuchar---- RUTAS. Por ejemplo si no la tienes que mandas? un 404 o no existe.
 //Estructura básica para el servidor
 const startServer = () => {
-    AppDataSource.initialize()
-      .then(() => {
-        console.log("Database connected");
-  
-        app.listen(PORT, () => {
-          console.log(`Server is running on port: ${PORT}`);
-        });
-      })
-      .catch(error => {
-        console.log(error);
+  AppDataSource.initialize()
+    .then(() => {
+      console.log("Database connected");
+
+      app.listen(PORT, () => {
+        console.log(`Server is running on port: ${PORT}`);
       });
-  };
-  
-  startServer();
-  
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+startServer();
