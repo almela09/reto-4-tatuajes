@@ -14,7 +14,7 @@ export class Roles1709458976585 implements MigrationInterface {
             generationStrategy: "increment",
           },
           {
-            name: "title",
+            name: "name",
             type: "varchar",
             length: "50",
           },
@@ -24,5 +24,7 @@ export class Roles1709458976585 implements MigrationInterface {
     );
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {}
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable("roles");
+  }
 }
