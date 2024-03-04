@@ -13,7 +13,7 @@ const app: Application = express(); //ejecutar funcion y guardar en una variable
 
 const PORT = process.env.PORT || 4000;
 
-app.get("/healthy", (req, res) => {
+app.get("/api/healthy", (req, res) => {
   res.status(200).json({
     success: true,
     message: "Server is healthy",
