@@ -8,6 +8,7 @@ import {
   updateRole,
 } from "../controllers/roleController";
 import { AppDataSource } from "./database/db";
+import { createAppointment } from "../controllers/appointmentsController";
 dotenv.config();
 
 const app: Application = express(); //ejecutar funcion y guardar en una variable.
@@ -38,7 +39,7 @@ app.delete("/api/roles/:id", deleteRole);
 
 
 //appointments routes
-
+app.post("/api/appointments", createAppointment)
 
 
 //la app tiene que escuchar---- RUTAS. Por ejemplo si no la tienes que mandas? un 404 o no existe.
