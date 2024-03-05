@@ -1,44 +1,74 @@
 //Aqui se escriben las funciones que afecten a la ENTIDAD ROLES.
 
 import { Request, Response } from "express";
+import { Role } from "../src/models/Role";
 //funcion para recuperar los roles. Tener en cuenta al exportar que es EXPRESS y no la primera que sale.
-export const getRoles = (req: Request, res: Response) => {
-  res.status(200).json({
-    success: true,
-    message: "Roles retrieved succesfully",
-  });
-};
-
-//el 201 es un created
-export const createRole = (req: Request, res: Response) =>{
-    res.status(201).json({
-        success: true,
-        message: "Roles created"
-      });
-
+export const getRoles = (req: Request,res: Response) => {
+  res.status(200).json(
+    {
+      success: true,
+      message: "Roles retrieved successfuly"
+    }
+  )
 }
 
-export const updateRole = (req: Request, res: Response) =>{     
-
-    // recuperar parametros de la ruta // thunderclient lo que pongas en la barra es dinámico.
-    req.params.id;
-    console.log(req.params.id);
+export const createRole = async(req: Request, res: Response) => {
+  try {
     
+  // recuperar la info a traves del body
+  console.log(req.body);
+  const name = req.body.name;
 
-    res.status(200).json({
-        success: true,
-        message: "Roles updated"
-      });
+  if (name.length > 50) {
+    return res.status(400).json({
+      success: false,
+      message: "Role name must be under 50 characters"
+    })
+  }
+
+  const newRole = await Role.create({
+    name: name
+  }).save()
+
+  res.status(201).json(
+    {
+      success: true,
+      message: "Role created",
+      data: newRole
+    }
+  )
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "role cant be created",
+      error: error
+    })
+  }
 }
 
-export const deleteRole = (req: Request, res: Response) =>{
-    req.params.id;
-    console.log(req.params.id);
-    
+export const updateRole = (req: Request, res: Response) => {
 
-    res.status(200).json({
-        success: true,
-        message: "Roles delete"
-      });
+  // recuperar parametros de la ruta
+  console.log(req.params.id);
+  
 
+  res.status(200).json(
+    {
+      success: true,
+      message: "Role updated"
+    }
+  )
+}
+
+export const deleteRole = (req: Request, res: Response) => {
+
+  // recuperar parametros de la ruta
+  console.log(req.params.id);
+
+  res.status(200).json(
+    {
+      success: true,
+      message: "Role deleted"
+    }
+  )
 }

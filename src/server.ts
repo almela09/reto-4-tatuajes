@@ -1,3 +1,4 @@
+
 import express, { Application } from "express"; // desde que librería? express.
 import dotenv from "dotenv";
 import {
@@ -27,6 +28,18 @@ app.put("/api/roles/:id", updateRole); //cambiar informacion de todas las column
 app.delete("/api/roles/:id", deleteRole);
 
 // User routes
+// app.get('/api/users', auth, isSuperAdmin, getUsers)
+// app.get('/api/users/:id', getUserById)
+// app.put('/api/users/:id', updateUserById)
+// app.delete('/api/users/:id', deleteUserById)
+
+
+//services routes
+
+
+//appointments routes
+
+
 
 //la app tiene que escuchar---- RUTAS. Por ejemplo si no la tienes que mandas? un 404 o no existe.
 //Estructura básica para el servidor
